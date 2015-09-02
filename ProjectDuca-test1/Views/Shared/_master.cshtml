@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Duca</title>
+    @Styles.Render("~/Content/css/style")
+    @RenderSection("Styles",required:false)
+</head>
+<body>
+    <header>
+        <img id="duca_icon" src="@Url.Content("~/Content/images/duca-icon.png")" width="50" height="50">
+        <h1>DUCA</h1>
+        <div id="account_info">
+            <img src="@Url.Content("~/Content/images/default-person-icon.png")" width="50" height="50">
+            <p id="account_name">Abel Gemechis</p>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li>@Html.ActionLink("Home","Index","Home")</li>
+            <li>@Html.ActionLink("About","About","Home")</li>
+            <li>@Html.ActionLink("Contact Us","Contact","Home")</li>
+            <li>Updates</li>
+            <li>Feeds</li>
+        </ul>
+    </nav>
+    <article>
+        
+        @RenderBody()
+    </article>
+   @Scripts.Render("~/bundles/jquery")
+   @Scripts.Render("~/Scripts/custom")
+   @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,52 @@
+/*------basic layout-----*/
+
+
+section.uploadForm{
+	background:white;
+	width:80%;
+	height: 100%;
+	margin:0px auto;
+	padding:20px;
+	text-align: center;
+	position:relative;
+}
+input.selectorButton{
+	width:200px;
+	height:40px;
+	background:red;
+	margin:10px;
+}
+.form{
+	width:60%;
+	height: 100%;
+	margin:0px auto;
+}
+.ArtworkButton{
+	width:150px;
+	height:150px;
+	float:left;
+	background: gray;
+	margin:10px;
+	margin:5px;
+	border-radius:10px;
+}
+
+.rightInputs{
+	float: right;
+	width:240px;
+	height: 40px;
+	margin:5px;	
+	border:1px solid rgb(20,21,57);;
+	border-radius: 5px ;
+}
+.rightInputs[type="submit"]{
+	float: none;
+	width:400px;
+}
+.clear{
+	clear:both;
+}
+
+
+
+

@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Upload Movie or TV Shows";
+}
+@section Styles{
+    @Styles.Render("~/Content/css/upload-form")
+    @Styles.Render("~/Content/dropzonescss")
+}
+ <section class="uploadForm">
+    <input id="movieButton" class="selectorButton" value="Movie" type="button">
+    <input id="tvShowButton" class="selectorButton" value="TVShow" type="button">
+    <div class="indicator"></div>
+     <div class="form" id="movieForm" hidden="true">
+          
+         <form action="/Upload/MovieUpload" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneMovieForm">
+             <input type="file" class="ArtworkButton" value="Upload Artwork here" name="file">
+             <input type="text" class="rightInputs" placeholder="Title" name="title">
+             <input type="text" class="rightInputs" placeholder="Description" name="description">
+             <input type="number" class="rightInputs" placeholder="Year Released" name="year">
+             <input type="text" class="rightInputs" placeholder="Genre" name="genre">
+             <input type="text" class="rightInputs" placeholder="Director Name" name="director">
+             <input type="file" multiple class="rightInputs" value="Upload File here" name="file">
+             <input type="submit" class="rightInputs" value="Upload">
+             <p class="clear"></p>
+           </form>
+</div>
+     <div id="tvShowForm" class="form" hidden="true">
+         <form action="/Upload/TvShowUpload" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneTvForm">
+             <input type="file" class="ArtworkButton" value="Upload Artwork here" name="artwork">
+             <input type="text" class="rightInputs" placeholder="Title" name="title"><br>
+             <input type="text" class="rightInputs" placeholder="Description" name="description"><br>
+             <input type="number" class="rightInputs" placeholder="Year Released" name="year"><br>
+             <input type="text" class="rightInputs" placeholder="Genre" name="genre"><br>
+             <input type="text" class="rightInputs" placeholder="Director Name" name="director"><br>
+             <input type="text" class="rightInputs" placeholder="TvShow Name" name="tvshow"><br>
+             <input type="number" class="rightInputs" placeholder="season" name="seasonNumber"><br>
+             <input type="number" class="rightInputs" placeholder="episode" name="episodeNumber"><br>
+             <input type="file" class="rightInputs" value="Upload File here" name="file"><br>
+             <input type="submit" class="rightInputs" value="Upload"><br>
+             <p class="clear"></p>
+         </form>
+</div>
+    <div class="tvShowForm"></div>
+ </section>
+@section Scripts
+{
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/bundles/dropzonescripts")
+    <script>
+        Dropzone.options.dropzoneMovieForm = {
+            paramName: "file",
+            maxFileSize: "1000",
+            acceptedFiles:"image/*,video/*",
+            accept: function (file, done) {
+                console.log(file);
+                console.log(done);
+            },
+            init: function() {
+                this.on("success", function(file,responseText) {
+                    console.log(file);
+                });
+                this.on("error", function(e) {
+                    console.log(e);
+                });
+            }
+        }
+        $(document).ready(function(){
+            var firstTimeButtonClick = true;
+            $("#movieButton").click(function(){
+                if($("#movieForm").is(":hidden")){
+                    if(firstTimeButtonClick){
+                        $("#movieForm").slideToggle(500);
+                        firstTimeButtonClick = false;
+                    }else{
+                        $("#movieForm").slideToggle(500);
+                        $("#tvShowForm").slideToggle(500);
+                    }
+                }
+            });
+            $("#tvShowButton").click(function(){
+                if($("#tvShowForm").is(":hidden")){
+                    if(firstTimeButtonClick){
+                        $("#tvShowForm").slideToggle(500);
+                        firstTimeButtonClick = false;
+                    }else{
+                        $("#tvShowForm").slideToggle(500);
+                        $("#movieForm").slideToggle(500);
+                    }
+                }
+            });
+        });
+    </script>
+}
